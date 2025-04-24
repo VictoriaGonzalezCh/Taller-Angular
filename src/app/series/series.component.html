@@ -1,0 +1,39 @@
+<header class="header">
+  <img src="assets/tvlogo.jpg" class="logo" alt="TV Logo">
+  <p class="title">TV Series</p>
+</header>
+
+<main class="main-content">
+  <section class="table-section">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Channel</th>
+          <th>Seasons</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let serie of series" (click)="selectSerie(serie)">
+          <td>{{ serie.id }}</td>
+          <td class="serie-name">{{ serie.name }}</td>
+          <td>{{ serie.channel }}</td>
+          <td>{{ serie.seasons }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="average">Average seasons: {{ getAverageSeasons() | number:'1.1-1' }}</p>
+  </section>
+
+  <section class="card-section" *ngIf="selectedSerie">
+    <div class="card">
+      <img [src]="selectedSerie.poster" class="card-img" alt="{{ selectedSerie.name }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ selectedSerie.name }}</h5>
+        <p class="card-text">{{ selectedSerie.description }}</p>
+        <a [href]="selectedSerie.webpage" class="btn btn-primary" target="_blank">Go to page</a>
+      </div>
+    </div>
+  </section>
+</main>
